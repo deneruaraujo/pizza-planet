@@ -21,11 +21,11 @@ export function ProductCard() {
         </p>
         <div className="flex gap-4 mr-2 py-2 px-2 rounded-t-md rounded-rb-sm rounded-lb-sm items-center justify-center shadow-inner shadow-gray-400 hover:text-black hover:shadow-gray-900 duration-200">
           <button className="hover:text-red-600 px-1">
-            <PiMinus size={14} />
+            <PiMinus size={15} />
           </button>
           <span>1</span>
           <button className="hover:text-red-600 px-1">
-            <PiPlus size={14} />
+            <PiPlus size={15} />
           </button>
           <button className="hover:text-red-600 px-1">
             <PiShoppingCart size={22} />
