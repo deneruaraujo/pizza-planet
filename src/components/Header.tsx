@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import logo from "@/public/header/logo.svg"
+import { NavBar } from "./header/NavBar";
 
 export function Header() {
   return (
@@ -19,6 +20,10 @@ export function Header() {
           PIZZA PLANET
         </Link>
       </h1>
+      <div className="flex justify-end mx-10 my-5">
+        <NavBar />
+      </div>
+
     </header>
   )
 }
