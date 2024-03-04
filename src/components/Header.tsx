@@ -20,10 +20,9 @@ export function Header() {
           PIZZA PLANET
         </Link>
       </h1>
-      <div className="flex justify-end mx-10 my-5">
+      <div className="mx-2 lg:mx-10 my-5">
         <NavBar />
       </div>
-
     </header>
   )
 }

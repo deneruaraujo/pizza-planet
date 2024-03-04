@@ -1,5 +1,5 @@
 import Image from "next/image";
-import pizzaPortuguesa from "@/public/product/pizza-a-portuguesa-1.jpg"
+import pizzaPortuguesa from "@/public/product/pizza-a-portuguesa.jpg"
 import { PiMinus, PiPlus, PiShoppingCart } from "react-icons/pi";
 
 export function ProductCard() {
@@ -16,14 +16,15 @@ export function ProductCard() {
         />
       </div>
       <div>
-        <p className="py-4 font-bold">
-          Pizza Portuguesa
-        </p>
+        <div className="py-4 font-bold flex flex-col items-center">
+          <p>Pizza Portuguesa</p>
+          <p>R$ 9,90</p>
+        </div>
         <div className="flex gap-4 mr-2 py-2 px-2 rounded-t-md rounded-rb-sm rounded-lb-sm items-center justify-center shadow-inner shadow-gray-400 hover:text-black hover:shadow-gray-900 duration-200">
           <button className="hover:text-red-600 px-1">
             <PiMinus size={15} />
           </button>
-          <span>1</span>
+          <span>0</span>
           <button className="hover:text-red-600 px-1">
             <PiPlus size={15} />
           </button>
