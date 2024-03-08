@@ -24,8 +24,8 @@ export function CartModal() {
               aria-label="carrinho"
             >
               <PiShoppingCart size={22} />
+              <span className='absolute -top-[0.40rem] -right-2 bg-yellow-600 font-semibold text-white rounded-full text-xs p-1 px-2'>6</span>
             </Button>
-            <Link href="" className='absolute -top-[0.40rem] -right-2 bg-yellow-600 font-semibold text-white rounded-full text-xs p-1 px-2'>6</Link>
           </div>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
