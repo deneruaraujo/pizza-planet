@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogFooter,
   DialogHeader,
@@ -10,7 +11,7 @@ import {
 } from "@/components/ui/dialog"
 import { DialogTitle } from "@radix-ui/react-dialog"
 import { PiShoppingCart } from "react-icons/pi"
-import { ProductOnCart } from "../../product/ProductOnCart"
+import { ProductOnCart } from "../product/ProductOnCart"
 import Link from "next/link"
 export function CartModal() {
   return (
@@ -44,18 +45,20 @@ export function CartModal() {
           </div>
           <DialogFooter className="flex flex-row text-sm items-center w-full justify-between border-t-2 pt-4 md:text-sm">
             <div className="flex items-start w-full gap-2">
-              <span>Total:</span>
+              <span>Total do Pedido:</span>
               <span>R$9,90</span>
             </div>
-            <Link href="#">
-              <Button
-                type="submit"
-                variant="outline"
-                className="font-bold bg-gray-800 hover:bg-red-900 text-white hover:text-white"
-              >
-                Continuar
-              </Button>
-            </Link>
+            <DialogClose asChild>
+              <Link href="/checkout">
+                <Button
+                  type="submit"
+                  variant="outline"
+                  className="font-bold bg-gray-800 hover:bg-red-900 text-white hover:text-white"
+                >
+                  Continuar
+                </Button>
+              </Link>
+            </DialogClose>
           </DialogFooter>
         </DialogContent>
       </Dialog>
