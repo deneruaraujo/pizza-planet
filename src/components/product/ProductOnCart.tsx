@@ -12,13 +12,11 @@ export function ProductOnCart() {
         alt="logo"
         className="rounded-l-3xl"
       />
-      <p className="text-xs my-auto font-semibold md:text-sm md:my-1">
-        Pizza Portuguesa
-        <br />
-        Quantidade: 2
-        <br />
-        Valor Total: R$ 19,80
-      </p>
-    </div >
+      <div className=" flex flex-col text-xs my-auto font-semibold md:text-sm md:my-1">
+        <span>Pizza Portuguesa</span>
+        <span>Quantidade: 2</span>
+        <span>Valor Total: R$ 19,80</span>
+      </div>
+    </div>
   )
 }

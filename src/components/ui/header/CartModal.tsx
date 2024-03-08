@@ -44,14 +44,8 @@ export function CartModal() {
           </div>
           <DialogFooter className="flex flex-row text-sm items-center w-full justify-between border-t-2 pt-4 md:text-sm">
             <div className="flex items-start w-full gap-2">
-              <div className="flex flex-col gap-y-2 font-bold">
-                <p>Entrega:</p>
-                <p className="text-end">Total:</p>
-              </div>
-              <div className="flex flex-col gap-y-2 font-bold">
-                <p>R$9,90</p>
-                <p>R$9,90</p>
-              </div>
+              <span>Total:</span>
+              <span>R$9,90</span>
             </div>
             <Link href="#">
               <Button

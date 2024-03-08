@@ -17,8 +17,8 @@ export function ProductCard() {
       </div>
       <div>
         <div className="py-4 font-bold flex flex-col items-center">
-          <p>Pizza Portuguesa</p>
-          <p>R$ 9,90</p>
+          <span>Pizza Portuguesa</span>
+          <span>R$ 9,90</span>
         </div>
         <div className="flex gap-4 mr-2 py-2 px-2 rounded-t-md rounded-rb-sm rounded-lb-sm items-center justify-center shadow-inner shadow-gray-400 hover:text-black hover:shadow-gray-900 duration-200">
           <button className="hover:text-red-600 px-1">
