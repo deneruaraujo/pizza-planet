@@ -6,7 +6,7 @@ export function NavBar() {
   return (
     <div className="flex justify-between w-full">
       <Link href="/#">
-        <Button className="font-bold bg-gray-800 hover:bg-red-900 text-white hover:text-white">
+        <Button variant="custom">
           Home
         </Button>
       </Link>

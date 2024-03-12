@@ -1,5 +1,5 @@
 import Image from "next/image";
-import pizzaPortuguesa from "@/public/product/pizza-a-portuguesa.jpg"
+import pizzaPortuguesa from "@/public/product/pizza-portuguesa.jpg"
 import { IoClose } from "react-icons/io5";
 
 export function ProductOnCart() {
@@ -13,13 +13,13 @@ export function ProductOnCart() {
         width={100}
         height={0}
         quality={100}
-        alt="logo"
+        alt=""
         className="rounded-l-3xl"
       />
       <div className="flex flex-col text-xs my-auto font-semibold md:text-sm md:my-1">
         <span>Pizza Portuguesa</span>
         <span>Quantidade: 2</span>
-        <span>Valor Total: R$ 19,80</span>
+        <span>Total do Item: R$ 19,80</span>
       </div>
     </div>
   )

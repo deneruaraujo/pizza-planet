@@ -20,12 +20,18 @@ export function CartModal() {
         <DialogTrigger asChild >
           <div className="relative">
             <Button
-              variant="outline"
-              className="font-bold bg-gray-800 hover:bg-red-900 text-white hover:text-white"
+              variant="custom"
               aria-label="carrinho"
+              title="carrinho"
             >
               <PiShoppingCart size={22} />
-              <span className='absolute -top-[0.40rem] -right-2 bg-yellow-600 font-semibold text-white rounded-full text-xs p-1 px-2'>6</span>
+              <span
+                className='absolute -top-[0.40rem] -right-2 bg-yellow-600 font-semibold text-white rounded-full text-xs p-1 px-2'
+                aria-label="items no carrinho"
+                title="items no carrinho"
+              >
+                6
+              </span>
             </Button>
           </div>
         </DialogTrigger>
@@ -52,8 +58,7 @@ export function CartModal() {
               <Link href="/checkout">
                 <Button
                   type="submit"
-                  variant="outline"
-                  className="font-bold bg-gray-800 hover:bg-red-900 text-white hover:text-white"
+                  variant="custom"
                 >
                   Continuar
                 </Button>

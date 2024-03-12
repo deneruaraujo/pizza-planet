@@ -7,7 +7,10 @@ import { Header } from "../components/Header";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Pizza Planet",
+  title: {
+    default: 'Pizza Planet',
+    template: '%s - Pizza Planet'
+  },
   description: "Your Pizza Place",
 };
 
