@@ -1,0 +1,40 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Alho e Óleo",
+      "src": "/product/pizza-alho-e-oleo.jpg",
+      "price": 25.00
+    },
+    {
+      "id": "2",
+      "name": "Calabresa",
+      "src": "/product/pizza-calabresa.jpg",
+      "price": 30.00
+    },
+    {
+      "id": "3",
+      "name": "Presunto e Mussarela",
+      "src": "/product/pizza-de-presunto-e-mussarela.jpg",
+      "price": 28.00
+    },
+    {
+      "id": "4",
+      "name": "Frango com Catupiry",
+      "src": "/product/pizza-frango-com-catupiry.jpg",
+      "price": 32.00
+    },
+    {
+      "id": "5",
+      "name": "Portuguesa",
+      "src": "/product/pizza-portuguesa.jpg",
+      "price": 35.00
+    },
+    {
+      "id": "6",
+      "name": "Quatro Queijos",
+      "src": "/product/pizza-quatro-queijos.jpg",
+      "price": 33.00
+    }
+  ]
+}
