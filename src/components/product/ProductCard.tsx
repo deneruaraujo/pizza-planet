@@ -1,6 +1,12 @@
+"use client"
+
+import { addToCart } from "@/src/redux/slices/cartSlice";
+import { AppDispatch } from "@/src/redux/store";
 import { CurrencyFormat } from "@/src/utils/currencyFormat";
 import Image from "next/image";
-import { PiMinus, PiPlus, PiShoppingCart } from "react-icons/pi";
+import { PiMinus, PiPlus } from "react-icons/pi";
+import { useDispatch } from 'react-redux'
+
 
 export interface ProductCardProps {
   name: string,
@@ -9,6 +15,8 @@ export interface ProductCardProps {
 }
 
 export function ProductCard({ name, src, price }: ProductCardProps) {
+  const dispatch = useDispatch<AppDispatch>();
+
   return (
     <div className="shadow-inner shadow-gray-500 bg-gradient-to-l from-gray-300 via-white to-gray-200 rounded-t-3xl rounded-b-lg flex flex-col items-center w-60">
       <Image
@@ -29,7 +37,10 @@ export function ProductCard({ name, src, price }: ProductCardProps) {
             <PiMinus size={15} aria-label="remover 1" title="remover 1" />
           </button>
           <span aria-label="quantidade">0</span>
-          <button className="hover:text-red-600 px-1">
+          <button
+            className="hover:text-red-600 px-1"
+            onClick={() => dispatch(addToCart({ name, src, price }))}
+          >
             <PiPlus size={15} aria-label="adicionar 1" title="adicionar 1" />
           </button>
         </div>

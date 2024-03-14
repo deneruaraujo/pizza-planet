@@ -13,7 +13,11 @@ import { DialogTitle } from "@radix-ui/react-dialog"
 import { PiShoppingCart } from "react-icons/pi"
 import { ProductOnCart } from "../product/ProductOnCart"
 import Link from "next/link"
+import { useSelector } from "react-redux"
+import { RootState } from "@/src/redux/store"
 export function CartModal() {
+  const cartItems = useSelector((state: RootState) => state.cart.cart)
+
   return (
     <div>
       <Dialog>
@@ -30,7 +34,7 @@ export function CartModal() {
                 aria-label="items no carrinho"
                 title="items no carrinho"
               >
-                6
+                {cartItems.length}
               </span>
             </Button>
           </div>
