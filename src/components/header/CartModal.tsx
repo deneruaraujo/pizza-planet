@@ -55,7 +55,7 @@ export function CartModal() {
           </DialogHeader>
           <div className="flex flex-col gap-6 overflow-y-auto max-h-[300px] md:max-h-[400px]">
             {cartItems.map(item => (
-              <ProductOnCart key={item.name} {...item} />
+              <ProductOnCart key={item.id} {...item} />
             ))}
           </div>
           <DialogFooter className="flex flex-row text-sm items-center w-full justify-between border-t-2 pt-4 md:text-sm">

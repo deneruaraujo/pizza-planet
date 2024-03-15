@@ -13,7 +13,7 @@ export function ShowCheckoutItems() {
   return (
     <div className="xl:w-full">
       {cartItems.map(item => (
-        <ProductOnCheckout key={item.name} {...item} />
+        <ProductOnCheckout key={item.id} {...item} />
       ))}
       <div className="flex justify-between border-b border-black/50 pb-4">
         <span>Subtotal:</span>

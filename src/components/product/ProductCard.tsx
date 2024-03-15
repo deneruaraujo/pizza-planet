@@ -1,6 +1,6 @@
 "use client"
 
-import { addToCart } from "@/src/redux/slices/cartSlice";
+import { addToCart, removeFromCart, removeOneFromCart } from "@/src/redux/slices/cartSlice";
 import { AppDispatch, RootState } from "@/src/redux/store";
 import { CurrencyFormat } from "@/src/utils/currencyFormat";
 import Image from "next/image";
@@ -10,13 +10,14 @@ import { useDispatch } from 'react-redux'
 
 
 export interface ProductProps {
+  id: string,
   name: string,
   quantity: number,
   src: string,
   price: number,
 }
 
-export function ProductCard({ name, quantity, src, price }: ProductProps) {
+export function ProductCard({ id, name, quantity, src, price }: ProductProps) {
   const dispatch = useDispatch<AppDispatch>();
   const cartItems = useSelector((state: RootState) => state.cart.cart)
 
@@ -36,15 +37,18 @@ export function ProductCard({ name, quantity, src, price }: ProductProps) {
           <span>{CurrencyFormat(price)}</span>
         </div>
         <div className="flex gap-4 py-2 px-6 w-36 rounded-t-md rounded-rb-sm rounded-lb-sm items-center justify-center shadow-inner shadow-gray-400 hover:text-black hover:shadow-gray-900 duration-200">
-          <button className="hover:text-red-600 mr-14 absolute left">
+          <button
+            className="hover:text-red-600 mr-14 absolute left"
+            onClick={() => dispatch(removeOneFromCart(id))}
+          >
             <PiMinus size={15} aria-label="remover 1" title="remover 1" />
           </button>
           <span aria-label="quantidade" className="">
-            {cartItems.find(item => item.name === name)?.quantity || 0}
+            {cartItems.find(item => item.id === id)?.quantity || 0}
           </span>
           <button
             className="hover:text-red-600 ml-14 absolute right"
-            onClick={() => dispatch(addToCart({ name, quantity, src, price }))}
+            onClick={() => dispatch(addToCart({ id, name, quantity, src, price }))}
           >
             <PiPlus size={15} aria-label="adicionar 1" title="adicionar 1" />
           </button>
