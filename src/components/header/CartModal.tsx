@@ -15,6 +15,7 @@ import { ProductOnCart } from "../product/ProductOnCart"
 import Link from "next/link"
 import { useSelector } from "react-redux"
 import { RootState } from "@/src/redux/store"
+import { CurrencyFormat } from "@/src/utils/currencyFormat"
 export function CartModal() {
   const cartItems = useSelector((state: RootState) => state.cart.cart)
 
@@ -34,39 +35,56 @@ export function CartModal() {
                 aria-label="items no carrinho"
                 title="items no carrinho"
               >
-                {cartItems.length}
+                {cartItems.reduce((total, item) => total + item.quantity, 0)}
               </span>
             </Button>
           </div>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle className="font-bold flex">
-              Seu carrinho
-            </DialogTitle>
+            {cartItems.length > 0
+              ?
+              <DialogTitle className="font-bold flex">
+                Seu carrinho
+              </DialogTitle>
+              :
+              <DialogTitle className="font-bold flex">
+                Carrinho vazio, favor adicionar item.
+              </DialogTitle>
+            }
           </DialogHeader>
           <div className="flex flex-col gap-6 overflow-y-auto max-h-[300px] md:max-h-[400px]">
-            <ProductOnCart />
-            <ProductOnCart />
-            <ProductOnCart />
-            <ProductOnCart />
-            <ProductOnCart />
-            <ProductOnCart />
+            {cartItems.map(item => (
+              <ProductOnCart key={item.name} {...item} />
+            ))}
           </div>
           <DialogFooter className="flex flex-row text-sm items-center w-full justify-between border-t-2 pt-4 md:text-sm">
             <div className="flex items-start w-full gap-2">
               <span>Total do Pedido:</span>
-              <span>R$9,90</span>
+              <span>
+                {CurrencyFormat(cartItems.reduce((total, item) => total + (item.price * item.quantity), 0))}
+              </span>
             </div>
             <DialogClose asChild>
-              <Link href="/checkout">
+              {cartItems.length > 0
+                ?
+                <Link href="/checkout">
+                  <Button
+                    type="submit"
+                    variant="custom"
+                  >
+                    Continuar
+                  </Button>
+                </Link>
+                :
                 <Button
                   type="submit"
                   variant="custom"
+                  disabled={cartItems.length === 0}
                 >
                   Continuar
                 </Button>
-              </Link>
+              }
             </DialogClose>
           </DialogFooter>
         </DialogContent>

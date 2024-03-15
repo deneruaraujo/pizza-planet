@@ -1,30 +1,34 @@
+"use client"
+
 import { Button } from "@/components/ui/button";
 import { ProductOnCheckout } from "../product/ProductOnCheckout";
-
-
+import { useSelector } from "react-redux";
+import { RootState } from "@/src/redux/store";
+import { CurrencyFormat } from "@/src/utils/currencyFormat";
 
 export function ShowCheckoutItems() {
+  const cartItems = useSelector((state: RootState) => state.cart.cart)
+  const entrega = 9.90
+
   return (
     <div className="xl:w-full">
-      <ProductOnCheckout />
-      <ProductOnCheckout />
-      <ProductOnCheckout />
-      <ProductOnCheckout />
-      <ProductOnCheckout />
+      {cartItems.map(item => (
+        <ProductOnCheckout key={item.name} {...item} />
+      ))}
       <div className="flex justify-between border-b border-black/50 pb-4">
         <span>Subtotal:</span>
         <span>
-          R$ 9,90
+          {CurrencyFormat(cartItems.reduce((total, item) => total + (item.price * item.quantity), 0))}
         </span>
       </div>
       <div className="flex justify-between border-b border-black/50 pb-4 mt-4">
         <span>Entrega:</span>
-        <span>R$ 9,90</span>
+        <span>{CurrencyFormat(entrega)}</span>
       </div>
       <div className="flex justify-between pb-4 mt-4">
         <span>Total:</span>
         <span>
-          R$ 19,80
+          {CurrencyFormat(cartItems.reduce((total, item) => total + (item.price * item.quantity), 0) + entrega)}
         </span>
       </div>
       <div className="flex flex-col justify-between gap-4 lg:flex-row">
@@ -40,7 +44,8 @@ export function ShowCheckoutItems() {
         type="submit"
         form="checkoutForm"
         variant="custom"
-        className="h-fit py-4 px-12 text-sm font-medium mb-16 rounded md:text-base disabled:cursor-not-allowed disabled:opacity-50"
+        disabled={cartItems.length === 0}
+        className="h-fit py-4 px-12 text-sm font-medium mb-16 rounded md:text-base"
       >
         Finalizar compra
       </Button>
