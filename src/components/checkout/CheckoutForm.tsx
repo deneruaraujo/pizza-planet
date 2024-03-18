@@ -3,6 +3,9 @@
 import { Input } from "@/components/ui/input";
 import { CheckoutCheckbox } from "./CheckoutCheckbox";
 import { ChangeEvent, useState } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/src/redux/store";
+import { updateCustomerInfo } from "@/src/redux/slices/cartSlice";
 
 interface adressProps {
   rua: string,
@@ -13,6 +16,8 @@ interface adressProps {
 }
 
 export function CheckoutForm() {
+  const dispatch = useDispatch<AppDispatch>();
+
   const [cpf, setCpf] = useState<string>('');
   const [cep, setCep] = useState<string>('');
   const [address, setAddress] = useState<adressProps>({
@@ -22,6 +27,39 @@ export function CheckoutForm() {
     cidade: '',
     uf: ''
   })
+
+  const handleCheckout = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const nome = document.getElementById('nome') as HTMLInputElement;
+    const cpf = document.getElementById('cpf') as HTMLInputElement;
+    const cep = document.getElementById('cep') as HTMLInputElement;
+    const rua = document.getElementById('rua') as HTMLInputElement;
+    const numero = document.getElementById('numero') as HTMLInputElement;
+    const complemento = document.getElementById('complemento') as HTMLInputElement;
+    const bairro = document.getElementById('bairro') as HTMLInputElement;
+    const cidade = document.getElementById('cidade') as HTMLInputElement;
+    const uf = document.getElementById('uf') as HTMLInputElement;
+    const celular = document.getElementById('celular') as HTMLInputElement;
+    const email = document.getElementById('email') as HTMLInputElement;
+
+    const customerInfo = {
+      nome: nome.value,
+      cpf: cpf.value,
+      cep: cep.value,
+      rua: rua.value,
+      numero: numero.value,
+      complemento: complemento.value,
+      bairro: bairro.value,
+      cidade: cidade.value,
+      uf: uf.value,
+      celular: celular.value,
+      email: email.value,
+    }
+
+    dispatch(updateCustomerInfo(customerInfo))
+    window.location.href = '/checkout/success'
+  }
 
   const applyCpfFormat = (value: string) => {
     return value.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, '$1.$2.$3-$4');
@@ -62,7 +100,7 @@ export function CheckoutForm() {
       })
   }
   return (
-    <form className="xl:w-full" id="checkoutForm">
+    <form className="xl:w-full" id="checkoutForm" onSubmit={handleCheckout}>
       <div className="flex flex-col">
         <label htmlFor="nome" className="mb-2 opacity-70">
           Nome e Sobrenome<span>*</span>
@@ -117,7 +155,7 @@ export function CheckoutForm() {
       </div>
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <label htmlFor="numero" className="mb-2 opacity-70">Número da residência<span>*</span></label>
+          <label htmlFor="numero" className="mb-2 opacity-70">Número<span>*</span></label>
           <Input
             type="numero"
             name="numero"

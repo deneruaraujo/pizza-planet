@@ -10,10 +10,34 @@ interface Product {
 
 export interface CartState {
   cart: Product[]
+  customerInfo: CustomerInfo | null;
 }
 
+export interface CustomerInfo {
+  nome: string,
+  cpf: string,
+  cep: string,
+  rua: string,
+  numero: string,
+  complemento: string,
+  bairro: string,
+  cidade: string,
+  uf: string;
+  celular: string;
+  email: string;
+}
+
+let cartItemsString;
+
+if (typeof window !== 'undefined') {
+  cartItemsString = localStorage.getItem('PizzaPlanet-CartItems');
+}
+
+const items = cartItemsString ? JSON.parse(cartItemsString) : [];
+
 const initialState: CartState = {
-  cart: []
+  cart: items,
+  customerInfo: null,
 }
 
 const cartSlice = createSlice({
@@ -32,6 +56,8 @@ const cartSlice = createSlice({
           existingItem.quantity += 1;
         }
       }
+
+      localStorage.setItem('PizzaPlanet-CartItems', JSON.stringify(state.cart.map(item => item)))
     },
     removeOneFromCart: (state, action: PayloadAction<string>) => {
       const idToRemove = action.payload;
@@ -43,6 +69,8 @@ const cartSlice = createSlice({
           state.cart = state.cart.filter((item) => item.id !== idToRemove);
         }
       }
+
+      localStorage.setItem('PizzaPlanet-CartItems', JSON.stringify(state.cart.map(item => item)))
     },
     removeFromCart: (state, action: PayloadAction<string>) => {
       const idToRemove = action.payload
@@ -50,9 +78,14 @@ const cartSlice = createSlice({
       if (itemIndex !== -1) {
         state.cart.splice(itemIndex, 1)
       }
+
+      localStorage.setItem('PizzaPlanet-CartItems', JSON.stringify(state.cart.map(item => item)))
+    },
+    updateCustomerInfo: (state, action: PayloadAction<CustomerInfo>) => {
+      state.customerInfo = action.payload
     }
   }
 })
 
-export const { addToCart, removeOneFromCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeOneFromCart, removeFromCart, updateCustomerInfo } = cartSlice.actions;
 export const cart = cartSlice.reducer

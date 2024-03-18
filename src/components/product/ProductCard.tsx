@@ -4,10 +4,10 @@ import { addToCart, removeFromCart, removeOneFromCart } from "@/src/redux/slices
 import { AppDispatch, RootState } from "@/src/redux/store";
 import { CurrencyFormat } from "@/src/utils/currencyFormat";
 import Image from "next/image";
+import React, { useEffect, useState } from "react";
 import { PiMinus, PiPlus } from "react-icons/pi";
 import { useSelector } from "react-redux";
 import { useDispatch } from 'react-redux'
-
 
 export interface ProductProps {
   id: string,
@@ -20,6 +20,15 @@ export interface ProductProps {
 export function ProductCard({ id, name, quantity, src, price }: ProductProps) {
   const dispatch = useDispatch<AppDispatch>();
   const cartItems = useSelector((state: RootState) => state.cart.cart)
+  const [localStorageCartItems, setLocalStorageCartItems] = useState<ProductProps[]>([])
+
+  useEffect(() => {
+    const retrieveProducts = JSON.parse(localStorage.getItem('PizzaPlanet-CartItems') || "[]");
+
+    if (retrieveProducts) {
+      setLocalStorageCartItems(retrieveProducts)
+    }
+  }, [cartItems])
 
   return (
     <div className="shadow-inner shadow-gray-500 bg-gradient-to-l from-gray-300 via-white to-gray-200 rounded-t-3xl rounded-b-lg flex flex-col items-center w-60">
@@ -44,7 +53,7 @@ export function ProductCard({ id, name, quantity, src, price }: ProductProps) {
             <PiMinus size={15} aria-label="remover 1" title="remover 1" />
           </button>
           <span aria-label="quantidade" className="">
-            {cartItems.find(item => item.id === id)?.quantity || 0}
+            {localStorageCartItems.find(item => item.id === id)?.quantity || 0}
           </span>
           <button
             className="hover:text-red-600 ml-14 absolute right"

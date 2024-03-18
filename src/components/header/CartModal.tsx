@@ -11,13 +11,26 @@ import {
 } from "@/components/ui/dialog"
 import { DialogTitle } from "@radix-ui/react-dialog"
 import { PiShoppingCart } from "react-icons/pi"
-import { ProductOnCart } from "../product/ProductOnCart"
+
 import Link from "next/link"
 import { useSelector } from "react-redux"
 import { RootState } from "@/src/redux/store"
 import { CurrencyFormat } from "@/src/utils/currencyFormat"
+import { ProductOnCart } from "../product/ProductOnCart"
+import { useEffect, useState } from "react"
+import { ProductProps } from "../product/ProductCard"
+
 export function CartModal() {
   const cartItems = useSelector((state: RootState) => state.cart.cart)
+  const [localStorageCartItems, setLocalStorageCartItems] = useState<ProductProps[]>([])
+
+  useEffect(() => {
+    const retrieveProducts = JSON.parse(localStorage.getItem('PizzaPlanet-CartItems') || "[]");
+
+    if (retrieveProducts) {
+      setLocalStorageCartItems(retrieveProducts)
+    }
+  }, [cartItems])
 
   return (
     <div>
@@ -34,8 +47,9 @@ export function CartModal() {
                 className='absolute -top-[0.40rem] -right-2 bg-yellow-600 font-semibold text-white rounded-full text-xs p-1 px-2'
                 aria-label="items no carrinho"
                 title="items no carrinho"
+                suppressHydrationWarning
               >
-                {cartItems.reduce((total, item) => total + item.quantity, 0)}
+                {localStorageCartItems.reduce((total, item) => total + item.quantity, 0)}
               </span>
             </Button>
           </div>
