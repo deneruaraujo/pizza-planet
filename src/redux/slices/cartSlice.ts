@@ -1,3 +1,4 @@
+import { ProductProps } from './../../components/product/ProductCard';
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface Product {
@@ -15,29 +16,27 @@ export interface CartState {
 
 export interface CustomerInfo {
   nome: string,
-  cpf: string,
-  cep: string,
   rua: string,
   numero: string,
-  complemento: string,
   bairro: string,
   cidade: string,
   uf: string;
-  celular: string;
-  email: string;
 }
 
 let cartItemsString;
+let customerInfoString
 
 if (typeof window !== 'undefined') {
   cartItemsString = localStorage.getItem('PizzaPlanet-CartItems');
+  customerInfoString = localStorage.getItem('PizzaPlanet-CustomerInfo');
 }
 
-const items = cartItemsString ? JSON.parse(cartItemsString) : [];
+const cartItems = cartItemsString ? JSON.parse(cartItemsString) : [];
+const customerInfo = customerInfoString ? JSON.parse(customerInfoString) : null;
 
 const initialState: CartState = {
-  cart: items,
-  customerInfo: null,
+  cart: cartItems,
+  customerInfo: customerInfo,
 }
 
 const cartSlice = createSlice({
@@ -83,9 +82,14 @@ const cartSlice = createSlice({
     },
     updateCustomerInfo: (state, action: PayloadAction<CustomerInfo>) => {
       state.customerInfo = action.payload
+      localStorage.setItem('PizzaPlanet-CustomerInfo', JSON.stringify(state.customerInfo))
+    },
+    clearCart: (state) => {
+      state.cart = [];
+      localStorage.removeItem('PizzaPlanet-CartItems');
     }
   }
 })
 
-export const { addToCart, removeOneFromCart, removeFromCart, updateCustomerInfo } = cartSlice.actions;
+export const { addToCart, removeOneFromCart, removeFromCart, updateCustomerInfo, clearCart } = cartSlice.actions;
 export const cart = cartSlice.reducer

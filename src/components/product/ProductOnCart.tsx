@@ -22,14 +22,16 @@ export function ProductOnCart({ id, name, quantity, src, price }: ProductProps) 
       >
         <IoClose size={21} className="text-white bg-red-700 hover:bg-red-500 duration-150 rounded-full" />
       </button>
-      <Image
-        src={src}
-        width={100}
-        height={0}
-        quality={100}
-        alt=""
-        className="rounded-l-3xl"
-      />
+      <div>
+        <Image
+          src={src}
+          width={100}
+          height={0}
+          quality={100}
+          alt=""
+          className="rounded-l-3xl h-20"
+        />
+      </div>
       <div className="flex flex-col text-xs my-auto font-semibold md:text-sm md:my-1">
         <span>{name}</span>
         <span>Quantidade: {quantity}</span>

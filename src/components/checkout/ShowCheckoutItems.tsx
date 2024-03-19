@@ -56,7 +56,7 @@ export function ShowCheckoutItems() {
         type="submit"
         form="checkoutForm"
         variant="custom"
-        disabled={cartItems.length === 0}
+        disabled={localStorageCartItems.length === 0}
         className="h-fit py-4 px-12 text-sm font-medium mb-16 rounded md:text-base"
       >
         Finalizar compra

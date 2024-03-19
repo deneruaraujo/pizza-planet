@@ -31,15 +31,17 @@ export function ProductCard({ id, name, quantity, src, price }: ProductProps) {
   }, [cartItems])
 
   return (
-    <div className="shadow-inner shadow-gray-500 bg-gradient-to-l from-gray-300 via-white to-gray-200 rounded-t-3xl rounded-b-lg flex flex-col items-center w-60">
-      <Image
-        src={src}
-        width={250}
-        height={0}
-        quality={100}
-        alt=""
-        className="rounded-t-3xl h-40"
-      />
+    <div className="shadow-inner shadow-gray-500 bg-gradient-to-l from-gray-300 via-white to-gray-200 rounded-t-3xl rounded-b-lg flex flex-col items-center">
+      <div>
+        <Image
+          src={src}
+          width={250}
+          height={0}
+          quality={100}
+          alt=""
+          className="rounded-t-3xl h-44"
+        />
+      </div>
       <div className="flex flex-col items-center justify-end h-full">
         <div className="py-4 font-bold flex flex-col items-center">
           <span className="text-center text-wrap whitespace-normal break-words">{name}</span>
