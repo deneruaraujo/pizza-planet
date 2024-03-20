@@ -7,12 +7,27 @@ import { PiMinus, PiPlus } from "react-icons/pi";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/src/redux/store";
 import { addToCart, removeOneFromCart } from "@/src/redux/slices/cartSlice";
+import { useState } from "react";
 
 export function ProductOnCheckout({ id, name, quantity, src, price }: ProductProps) {
   const dispatch = useDispatch<AppDispatch>()
+  const [isRemoving, setIsRemoving] = useState(false);
+
+  const handleRemove = () => {
+    if (quantity === 1) {
+      setIsRemoving(true);
+
+      setTimeout(() => {
+        dispatch(removeOneFromCart(id));
+      }, 300);
+    } else {
+      dispatch(removeOneFromCart(id));
+    }
+  };
+
 
   return (
-    <>
+    <div className={`${isRemoving ? 'slide-down' : ''}`}>
       <div className="flex items-center justify-between">
         <div className="flex gap-4 items-center relative">
           <Image src={src} alt="" width={100} height={0} className="relative rounded-t-md h-16 w-24 lg:h-24 lg:w-32" />
@@ -26,7 +41,7 @@ export function ProductOnCheckout({ id, name, quantity, src, price }: ProductPro
       <div className="flex mb-8 h-5 w-24 lg:w-32">
         <button
           className="text-white bg-red-700 flex items-center justify-center w-12 rounded-bl-md border-r-[0.0312rem] border-yellow-500 hover:bg-red-500 duration-150 lg:w-16"
-          onClick={() => dispatch(removeOneFromCart(id))}
+          onClick={handleRemove}
         >
           <PiMinus size={15} aria-label="remover 1" title="remover 1" />
         </button>
@@ -37,6 +52,8 @@ export function ProductOnCheckout({ id, name, quantity, src, price }: ProductPro
           <PiPlus size={15} aria-label="remover 1" title="remover 1" />
         </button>
       </div>
-    </>
+    </div>
+
+
   )
 }

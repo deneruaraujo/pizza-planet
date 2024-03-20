@@ -23,6 +23,7 @@ import { ProductProps } from "../product/ProductCard"
 export function CartModal() {
   const cartItems = useSelector((state: RootState) => state.cart.cart)
   const [localStorageCartItems, setLocalStorageCartItems] = useState<ProductProps[]>([])
+  const [isRemovingItem, setIsRemovingItem] = useState(false);
 
   useEffect(() => {
     const retrieveProducts = JSON.parse(localStorage.getItem('PizzaPlanet-CartItems') || "[]");
@@ -31,6 +32,7 @@ export function CartModal() {
       setLocalStorageCartItems(retrieveProducts)
     }
   }, [cartItems])
+
 
   return (
     <div>
@@ -54,7 +56,7 @@ export function CartModal() {
             </Button>
           </div>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className={`sm:max-w-[425px] transition-height`}>
           <DialogHeader>
             {cartItems.length > 0
               ?
