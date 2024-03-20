@@ -21,23 +21,23 @@ export function LoginModal() {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>
+          <DialogTitle className="text-left">
             Preencha seus dados para fazer login
           </DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
+          <div>
             <Label htmlFor="email" className="text-right">
               Email
             </Label>
             <Input
               type="email"
               id="email"
-              className="col-span-3 rounded-md focus:!ring-2 focus:!ring-red-800 focus:!ring-offset-2"
+              className="col-span-3 rounded-md focus:!ring-2 focus:!ring-red-800 focus:!ring-offset-2 my-auto"
               placeholder="Informe seu email"
             />
           </div>
-          <div className="grid grid-cols-4 items-center gap-4">
+          <div>
             <Label htmlFor="senha" className="text-right">
               Senha
             </Label>
@@ -53,7 +53,7 @@ export function LoginModal() {
           <Button
             type="submit"
             variant="outline"
-            className="font-bold text-white bg-red-700 hover:bg-red-500 hover:text-white"
+            className="font-bold text-white bg-red-700 hover:bg-red-700 hover:text-white !opacity-50 !cursor-not-allowed"
           >
             Entrar
           </Button>
