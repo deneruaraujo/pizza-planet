@@ -40,7 +40,7 @@ export function SuccessCheckout() {
   }, [dispatch, router])
 
   return (
-    <main className="mx-3 mb-10 lg:w-4/5 lg:mx-auto">
+    <main className="mx-3 mb-10 md:w-4/5 md:mx-auto 2xl:w-2/4 ">
       {itemsLoaded ? (
         <div>
           <section className="mb-10">
